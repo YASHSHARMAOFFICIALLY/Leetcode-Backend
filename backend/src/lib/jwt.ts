@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 
 const JWT_SECRET = process.env.JWT_SECRET as string;
 
-export const signToken = (userId: number) => {
+export const signToken = (userId: string) => {
   return jwt.sign({ userId }, JWT_SECRET, {
     expiresIn: "7d",
   });
@@ -10,7 +10,7 @@ export const signToken = (userId: number) => {
 
 export const verifyToken = (token: string) => {
   try {
-    return jwt.verify(token, JWT_SECRET) as { userId: number };
+    return jwt.verify(token, JWT_SECRET) as { userId: string };
   } catch {
     throw new Error("Invalid token");
   }

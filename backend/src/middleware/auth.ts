@@ -3,7 +3,7 @@ import { verifyToken } from "../lib/jwt";
 
 // Returns the authenticated userId, OR sends a 401 and returns null to short-circuit.
 // Caller: `const userId = requireAuth(req, res); if (userId === null) return;`
-export function requireAuth(req: Request, res: Response): number | null {
+export function requireAuth(req: Request, res: Response): string | null {
   const header = req.headers.authorization;
   const token = header?.startsWith("Bearer ") ? header.slice(7) : null;
   if (!token) {
